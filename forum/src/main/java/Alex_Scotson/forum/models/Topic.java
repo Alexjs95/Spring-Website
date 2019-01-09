@@ -61,6 +61,6 @@ public class Topic {
         this.message = message;
     }
 
-    
+
 
 }
