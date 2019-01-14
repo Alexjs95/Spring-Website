@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
+<head th:fragment=“site-head”>
+    <meta charset=“UTF-8” />
+
+    <meta th:include=“this :: head” th:remove=“tag”/>
+</head>
+    <body>
+        <header th:fragment=“site-header”>
+            <h1> buttons... </h1>
+        </header>
+        <h1>Welcome</h1>
+        <footer th:fragment="site-footer">
+            some footer..
+        </footer>
+    </body>
+</html>
