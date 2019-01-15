@@ -34,7 +34,7 @@ public class Topic {
         this.body = message;
     }
 
-    public Topic (Integer id, User author, String title, String body) {
+    public Topic (Integer id, String title, String body, User author) {
         this.id = id;
         this.author = author;
         this.title = title;
