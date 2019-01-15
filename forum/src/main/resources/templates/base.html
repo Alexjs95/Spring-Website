@@ -17,14 +17,42 @@
     <span class="navbar-brand mb-0 h1">Decorator Sample</span>
 </nav>
 
-
 <div class="container">
-    <h1> buttons... </h1>
-    <div class="navbar">
-        <div layout:fragment="header"></div>
+
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <th:block layout:fragment="breadcrumb">
+            </th:block>
+        </ol>
+    </nav>
+
+    <div class="content">
+        <div layout:fragment="page_content"></div>
+
     </div>
 </div>
-<!-- /.container -->
+
+<div class="container">
+    <div th:fragment="header">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" th:href="@{/}">Products</a></li>
+                        <li><a href="#" th:href="@{/}">Create Product</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+    </div>
+</div>
+
+
+
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 </script>
