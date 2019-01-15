@@ -2,6 +2,7 @@ package alexscotson.forum.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Date;
 
 @Entity
 @Table (name = "topics")
@@ -12,29 +13,44 @@ public class Topic {
     private Integer id;
 
     @NotEmpty
-    private String username;
+    private User author;
 
     @NotEmpty
     private String title;
 
     @NotEmpty
-    private String message;
+    private String body;
+
+    @NotEmpty
+    private Date date = new Date();
 
     public Topic() {
 
     }
 
-    public Topic (String username, String title, String message) {
-        this.username = username;
+    public Topic (User author, String title, String message) {
+        this.author = author;
         this.title = title;
-        this.message = message;
+        this.body = message;
     }
 
-    public Topic (Integer id, String username, String title, String message) {
+    public Topic (Integer id, User author, String title, String body) {
         this.id = id;
-        this.username = username;
+        this.author = author;
         this.title = title;
-        this.message = message;
+        this.body = body;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Topic{" +
+                "id=" + id +
+                ", author=" + author +
+                ", title='" + title + '\'' +
+                ", message='" + body + '\'' +
+                ", date=" + date +
+                '}';
     }
 
     public Integer getId () {
@@ -45,20 +61,37 @@ public class Topic {
         this.id = id;
     }
 
-    public String getUser () {
-        return username;
+    public User getUser () {
+        return author;
     }
 
-    public void setUser (String username) {
-        this.username = username;
+    public void setUser (User author) {
+        this.author = author;
     }
 
-    public String getMessage () {
-        return message;
+    public String getTitle() {
+        return title;
     }
 
-    public void setMessage (String message) {
-        this.message = message;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
+    public String getBody () {
+        return body;
+    }
+
+    public void setBody (String body) {
+        this.body = body;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
 
