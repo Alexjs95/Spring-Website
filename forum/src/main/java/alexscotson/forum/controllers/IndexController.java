@@ -1,13 +1,18 @@
-package Alex_Scotson.forum.controllers;
+package alexscotson.forum.controllers;
+
 
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+
 @Controller
-public class IndexController {
+public class IndexController  {
+
     @GetMapping("/")
     public String index() {
         return "index";
     }
+
+
 }

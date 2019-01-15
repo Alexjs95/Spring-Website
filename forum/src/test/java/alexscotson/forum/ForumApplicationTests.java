@@ -1,4 +1,4 @@
-package Alex_Scotson.forum;
+package alexscotson.forum;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

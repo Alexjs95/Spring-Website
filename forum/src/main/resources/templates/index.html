@@ -1,13 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace=“layout :: site-head”>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
 
-    <title>ASForum</title>
-</head>
-<body>
-<h1>Welcome to Spring MVC</h1>
-<b th:text="${execInfo.now.time}"></b>
-<footer th:replace=“layout :: site-footer” />
+<header layout:fragment="header" id="header">
 
-</body>
+</header>
+
+
+
+<div layout:fragment="page_content" id="page_content">
+
+<p>Place stuff here</p>
+
+</div>
+
+
+
+
+
+
 </html>

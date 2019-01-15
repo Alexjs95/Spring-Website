@@ -1,4 +1,4 @@
-package Alex_Scotson.forum.models;
+package alexscotson.forum.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
