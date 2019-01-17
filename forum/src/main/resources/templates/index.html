@@ -6,6 +6,19 @@
 
 
 
+    <main id="topics">
+        <article th:each="t : ${latest3Topics}">
+            <h2 class="title" th:text="${t.title}">Post Title</h2>
+            <div class="date">
+                <i>Posted on</i>
+                <span th:text="${#dates.format(t.date, 'dd-MMM-yyyy')}">22-May-2016</span>
+                <i>by</i>
+
+            </div>
+            <p class="content" th:utext="${t.body}">Post content</p>
+        </article>
+    </main>
+
 
 
 
