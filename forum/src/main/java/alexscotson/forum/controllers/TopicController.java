@@ -2,7 +2,7 @@ package alexscotson.forum.controllers;
 
 
 import alexscotson.forum.models.Topic;
-import alexscotson.forum.respository.TopicRepository;
+import alexscotson.forum.service.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

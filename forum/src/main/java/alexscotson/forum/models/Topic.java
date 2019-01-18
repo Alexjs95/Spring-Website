@@ -48,7 +48,7 @@ public class Topic {
                 "id=" + id +
                 ", author=" + author +
                 ", title='" + title + '\'' +
-                ", message='" + body + '\'' +
+                ", body='" + body + '\'' +
                 ", date=" + date +
                 '}';
     }

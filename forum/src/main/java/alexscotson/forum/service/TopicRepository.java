@@ -1,4 +1,4 @@
-package alexscotson.forum.respository;
+package alexscotson.forum.service;
 
 import alexscotson.forum.models.Topic;
 import org.springframework.data.repository.CrudRepository;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface TopicRepository {
+public interface TopicRepository{
 
     List<Topic> findAll ();
 
