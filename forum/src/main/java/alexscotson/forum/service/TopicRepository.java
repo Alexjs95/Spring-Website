@@ -6,9 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface TopicRepository extends CrudRepository <Topic, Long> {
-    @Override
+public interface TopicRepository {
+
     List<Topic> findAll ();
 
     Topic findTopicById (Integer id);
