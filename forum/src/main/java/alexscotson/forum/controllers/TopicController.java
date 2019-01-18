@@ -2,7 +2,7 @@ package alexscotson.forum.controllers;
 
 
 import alexscotson.forum.models.Topic;
-import alexscotson.forum.service.TopicService;
+import alexscotson.forum.respository.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +13,11 @@ import java.util.List;
 public class TopicController {
 
     @Autowired
-    private TopicService topicService;
+    private TopicRepository topicRepository;
 
     @GetMapping("/topics")
     public List<Topic> getAllComments () {
-        return topicService.findAll();
+        return topicRepository.findAll();
     }
 
 //    @GetMapping ("/comment/{id}")

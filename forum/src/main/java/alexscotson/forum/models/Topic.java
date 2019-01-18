@@ -13,7 +13,7 @@ public class Topic {
     private Integer id;
 
     @NotEmpty
-    private User author;
+    private String author;
 
     @NotEmpty
     private String title;
@@ -28,13 +28,13 @@ public class Topic {
 
     }
 
-    public Topic (User author, String title, String message) {
+    public Topic (String author, String title, String message) {
         this.author = author;
         this.title = title;
         this.body = message;
     }
 
-    public Topic (Integer id, String title, String body, User author) {
+    public Topic (Integer id, String title, String body, String author) {
         this.id = id;
         this.author = author;
         this.title = title;
@@ -61,11 +61,11 @@ public class Topic {
         this.id = id;
     }
 
-    public User getUser () {
+    public String getUser () {
         return author;
     }
 
-    public void setUser (User author) {
+    public void setUser (String author) {
         this.author = author;
     }
 
