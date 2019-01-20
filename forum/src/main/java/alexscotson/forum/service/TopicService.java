@@ -6,17 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class TopicService implements TopicRepository {
+public class TopicService  {
+
+    @Autowired
+    public TopicRepository topicRepo;
 
     public List<Topic> findAll() {
-        return this.findAll();
+
+
+        return this.topicRepo.findAll();
     }
 
     public Topic findById(Integer id) {
-        return this.findById(id);
+
+        return topicRepo.findById(id).orElse(null);
     }
 
     public void create(Topic topic) {

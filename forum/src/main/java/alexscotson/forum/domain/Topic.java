@@ -11,7 +11,7 @@ import java.util.Date;
 public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "topic_id")
+    @Column(name = "id")
     private Integer id;
 
     @NotEmpty
@@ -23,8 +23,8 @@ public class Topic {
     @NotEmpty
     private String topicBody;
 
-    @NotEmpty
-    private Date date = new Date();
+    //@NotEmpty
+    //private Date date = new Date();
 
     public Topic() {
 
@@ -67,13 +67,13 @@ public class Topic {
         this.topicBody = topicBody;
     }
 
-    public Date getDate() {
-        return date;
-    }
+   // public Date getDate() {
+    //    return date;
+    //}
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+//    public void setDate(Date date) {
+//        this.date = date;
+//    }
 
     @Override
     public String toString() {
@@ -82,7 +82,7 @@ public class Topic {
                 ", byUser='" + byUser + '\'' +
                 ", topicTitle='" + topicTitle + '\'' +
                 ", topicBody='" + topicBody + '\'' +
-                ", date=" + date +
+     //           ", date=" + date +
                 '}';
     }
 }

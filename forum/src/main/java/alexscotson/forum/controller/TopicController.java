@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class TopicController {
@@ -16,31 +16,52 @@ public class TopicController {
     private TopicService topicService;
 
 
-    @RequestMapping("/topics/index")
-    public String index (Model model) {
+
+    @GetMapping("/topic/index")
+    public String viewTopics(Model model) {
         List<Topic> topics = topicService.findAll();
-        model.addAttribute("topic", topics);
+        model.addAttribute("topics", topics);
         return "topic/index";
     }
 
-    @RequestMapping("/topics/view/{id}")
+
+
+    @GetMapping("/topic/view/{id}")
     public String viewTopic (@PathVariable("id") Integer id, Model model) {
         Topic topic = topicService.findById(id);
         model.addAttribute("topic", topic);
-        return "topic/view";
+        return  "topic/view";
     }
 
-    @PostMapping("/topics/create")
-    public void create (@RequestBody Topic topic) {
+
+
+
+
+    @GetMapping("/topic/create")
+    public String createView(Model model) {
+        model.addAttribute("topic", new Topic());
+        return "topic/create";
+    }
+
+
+
+    @PostMapping("/topic/create")
+    public String create (@RequestBody Topic topic) {
+      // topic.setDate(new Date());
         this.topicService.create(topic);
+        return "topic/index";
     }
 
-    @PostMapping("/topics/edit")
+
+
+
+
+    @PostMapping("/topic/edit")
     public void edit(@RequestBody Topic topic) {
         this.topicService.edit(topic);
     }
 
-    @DeleteMapping("topics/delete/{id}")
+    @DeleteMapping("topic/delete/{id}")
     public void delete (@PathVariable ("id") Integer id) {
         this.topicService.delete(id);
     }

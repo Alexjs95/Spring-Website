@@ -16,25 +16,19 @@ import java.util.List;
 @Controller
 public class IndexController {
 
-    @Autowired
-    private TopicService topicService;
-
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private TopicService topicService;
+//
+//    @Autowired
+//    private UserService userService;
 
 
     @GetMapping("/")
     public String index() {
-
         return "index";
     }
 
-    @GetMapping("/topics/index")
-    public String viewTopics(Model model) {
-        List<Topic> topics = topicService.findAll();
-        model.addAttribute("topics", topics);
-        return "topic/index";
-    }
+
 
 
 }

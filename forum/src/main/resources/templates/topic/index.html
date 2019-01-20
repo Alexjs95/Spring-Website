@@ -7,10 +7,15 @@
     <h1> topics page test </h1>
     <main id="topics">
         <article th:each="t : ${topics}">
-            <h2 class="title" th:text="${t.topicTitle}">Post Title</h2>
+
+
+            <h2 class="title">
+                <a th:href="@{'/topic/view/' + ${t.id}}" th:text="${t.topicTitle}"></a>
+            </h2>
+
             <div class="date">
-                <i>Posted on</i>
-                <span th:text="${#dates.format(t.date, 'dd-MMM-yyyy')}">22-May-2016</span>
+                <!--<i>Posted on</i>-->
+              <!--  <span th:text="${#dates.format(t.date, 'dd-MMM-yyyy')}">22-May-2016</span>-->
                 <i>by</i>
                 <span th:text="${t.getByUser()}"></span>
             </div>
