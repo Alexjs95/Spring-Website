@@ -1,15 +1,16 @@
 package alexscotson.forum.controller;
 
 import alexscotson.forum.domain.Topic;
+import alexscotson.forum.domain.User;
 import alexscotson.forum.service.TopicService;
 import alexscotson.forum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -23,19 +24,17 @@ public class IndexController {
 
 
     @GetMapping("/")
-    public String index(Model model) {
-//        List<topic> topics = topicService.findRecent5();
-//        model.addAttribute("topics", topics);
+    public String index() {
+
         return "index";
     }
 
-    @GetMapping("/topics")
+    @GetMapping("/topics/index")
     public String viewTopics(Model model) {
-        List<Topic> topics = topicService.findAllEntries();
+        List<Topic> topics = topicService.findAll();
         model.addAttribute("topics", topics);
-        return "Topic/index";
+        return "topic/index";
     }
-
 
 
 }

@@ -10,8 +10,8 @@ import java.util.Date;
 @Entity
 public class Topic {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
-    @Column (name = "topic_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "topic_id")
     private Integer id;
 
     @NotEmpty
