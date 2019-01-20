@@ -2,6 +2,7 @@ package alexscotson.forum.controller;
 
 import alexscotson.forum.domain.Topic;
 import alexscotson.forum.service.TopicService;
+import alexscotson.forum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +18,14 @@ public class IndexController {
     @Autowired
     private TopicService topicService;
 
+    @Autowired
+    private UserService userService;
+
+
     @GetMapping("/")
     public String index(Model model) {
 //        List<topic> topics = topicService.findRecent5();
 //        model.addAttribute("topics", topics);
-
         return "index";
     }
 
@@ -31,5 +35,7 @@ public class IndexController {
         model.addAttribute("topics", topics);
         return "Topic/index";
     }
+
+
 
 }
