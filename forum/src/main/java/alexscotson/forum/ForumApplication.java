@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-(scanBasePackages={"alexscotson.forum.controller", "alexscotson.forum.domain", "alexscotson.forum.service"})
+(scanBasePackages={"alexscotson.forum.controller", "alexscotson.forum.domain", "alexscotson.forum.service", "alexscotson.forum.config"})
 @EnableJpaRepositories
 public class ForumApplication {
 

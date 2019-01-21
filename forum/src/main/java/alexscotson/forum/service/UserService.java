@@ -1,10 +1,15 @@
 package alexscotson.forum.service;
 
+import alexscotson.forum.domain.Role;
+import alexscotson.forum.domain.RoleRepository;
 import alexscotson.forum.domain.User;
 import alexscotson.forum.domain.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,25 +17,21 @@ import java.util.Objects;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-
-
-    public User findByUsername(String username) {
-        return this.userRepository.findByUsername(username);
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
-    public void save(User user) {
-        this.userRepository.save(user);
-    }
-
-    public boolean authenticate(String username, String password) {
-
-        User user = userRepository.findByUsername(username);
-
-        if (user.getUsername() == username && user.getPassword() == password) {
-            return true;
-        }
-        return false;
+    public void saveUser(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setActive(1);
+        Role userRole = roleRepository.findByRole("ADMIN");
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        userRepository.save(user);
     }
 
 

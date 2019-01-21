@@ -3,26 +3,55 @@
 <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cerulean/bootstrap.min.css"/>
 <div th:replace="fragments/navbar :: navbar"/>
 
-<h1> Register an account </h1>
-<div>
-    <form action="#" th:action = "@{/user/login}" th:object="${user}" method="POST">
-        <div>
-            <label>Username: </label>
-            <input type="text" th:field="*{username}">
-        </div>
-
-
-        <div>
-            <label>Password: </label>
-            <input type="password" th:field="*{password}">
-        </div>
-
-        <div>
-            <input type="submit" value="Submit" />
-        </div>
+<body>
+    <h1>Login</h1>
+    <br><br>
+    <form name='login' th:action = "@{/user/login}" th:object="${user}" method='POST'>
+        <table>
+            <tr>
+                <td>User:</td>
+                <td><input type="text" th:field="*{username}" name='username' value=''></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" th:field="*{password}" name='password' /></td>
+            </tr><tr></tr>
+            <tr>
+                <td><input name="submit" type="submit" value="submit" /></td>
+            </tr>
+        </table>
     </form>
+</body>
 
-</div>
+
+
+
+
+
+
+
+
+
+<!--<h1> Register an account </h1>-->
+<!--<div>-->
+    <!--<form action="#" th:action = "@{/user/login}" th:object="${user}" method="POST">-->
+        <!--<div>-->
+            <!--<label>Username: </label>-->
+            <!--<input type="text" th:field="*{username}">-->
+        <!--</div>-->
+
+
+        <!--<div>-->
+            <!--<label>Password: </label>-->
+            <!--<input type="password" th:field="*{password}">-->
+        <!--</div>-->
+
+        <!--<div>-->
+            <!--<input type="submit" value="Submit" />-->
+        <!--</div>-->
+    <!--</form>-->
+
+<!--</div>-->
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">

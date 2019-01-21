@@ -1,9 +1,13 @@
 package alexscotson.forum.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
-
+@Data
 @Entity
 public class User {
     @Id
@@ -11,14 +15,20 @@ public class User {
     @Column(name = "user_id")
     private Integer id;
 
-    @NotEmpty
-    private String username;
-
+    @Email()
     @NotEmpty
     private String email;
 
     @NotEmpty
+    private String username;
+
+    @NotEmpty
     private String password;
+
+    private int active;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     public User() {
 
@@ -60,6 +70,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
