@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cerulean/bootstrap.min.css"/>
+
 <div th:replace="fragments/navbar :: navbar"/>
 
 <body>
     <h1>Login</h1>
-    <br><br>
+    <br>
     <form name='login' th:action = "@{/user/login}" th:object="${user}" method='POST'>
         <table>
             <tr>
-                <td>User:</td>
-                <td><input type="text" th:field="*{username}" name='username' value=''></td>
+                <td>Email:</td>
+                <td><input type="text" th:field="*{email}" name='email' value=''></td>
             </tr>
             <tr>
                 <td>Password:</td>
@@ -22,37 +23,6 @@
         </table>
     </form>
 </body>
-
-
-
-
-
-
-
-
-
-
-<!--<h1> Register an account </h1>-->
-<!--<div>-->
-    <!--<form action="#" th:action = "@{/user/login}" th:object="${user}" method="POST">-->
-        <!--<div>-->
-            <!--<label>Username: </label>-->
-            <!--<input type="text" th:field="*{username}">-->
-        <!--</div>-->
-
-
-        <!--<div>-->
-            <!--<label>Password: </label>-->
-            <!--<input type="password" th:field="*{password}">-->
-        <!--</div>-->
-
-        <!--<div>-->
-            <!--<input type="submit" value="Submit" />-->
-        <!--</div>-->
-    <!--</form>-->
-
-<!--</div>-->
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 </script>

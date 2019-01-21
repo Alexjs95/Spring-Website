@@ -1,5 +1,6 @@
 package alexscotson.forum.domain;
 
+
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,14 +16,14 @@ public class User {
     @Column(name = "user_id")
     private Integer id;
 
-    @Email()
-    @NotEmpty
+    @Email(message = "*Please provide a valid Email")
+    @NotEmpty(message = "*Please provide an email")
     private String email;
 
-    @NotEmpty
+    @NotEmpty(message = "*Please provide your username")
     private String username;
 
-    @NotEmpty
+    @NotEmpty(message = "*Please provide your password")
     private String password;
 
     private int active;

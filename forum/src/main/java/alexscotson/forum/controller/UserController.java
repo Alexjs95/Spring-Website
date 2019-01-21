@@ -3,12 +3,15 @@ package alexscotson.forum.controller;
 import alexscotson.forum.domain.User;
 import alexscotson.forum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -19,14 +22,15 @@ public class UserController {
     private UserService userService;
 
 
-    @GetMapping(value="user/login")
+    @RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         return modelAndView;
     }
 
-    @GetMapping(value="user/registration")
+
+    @RequestMapping(value="/registration", method = RequestMethod.GET)
     public ModelAndView registration(){
         ModelAndView modelAndView = new ModelAndView();
         User user = new User();
@@ -35,7 +39,7 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "user/registration")
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         User userExists = userService.findUserByEmail(user.getEmail());
@@ -56,26 +60,70 @@ public class UserController {
         return modelAndView;
     }
 
+    @RequestMapping(value="/dashboard", method = RequestMethod.GET)
+    public ModelAndView home(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        modelAndView.addObject("userName", "Welcome " + user.getUsername() + " (" + user.getEmail() + ")");
+        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
+        modelAndView.setViewName("admin/home");
+        return modelAndView;
+    }
 
 
-//    @GetMapping("/user/login")
-//    public String login(Model model) {
-//        model.addAttribute("user", new User());       // returns the view to create a new topic.
+
+//    @RequestMapping(value="/login", method = RequestMethod.POST)
+//    public String validateLogin(@Valid User user, BindingResult bindingResult){
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        boolean loggedIn = userService.validateUser(user.getEmail(), user.getPassword());
 //
-//        return "user/login";
+//        if (loggedIn == true) {
+//            System.out.println("logged in");
+//        }
+//        System.out.println("NOT logged in");
+//
+//
+//        return "redirect:/topic/index";
 //    }
 
 
+
+
+
+
+
+
+//    @GetMapping(value="user/login")
+//    public String login(Model model){
+//        model.addAttribute("user", new User());
+//        return "user/login";
+//    }
+//
+//    @GetMapping(value="user/register")
+//    public String registration(Model model){
+//        model.addAttribute("user", new User());
+//        return "user/register";
+//    }
 //
 //    @PostMapping("/user/login")
-//    public String attemptLogin(User user) {
-//        if (!userService.authenticate(
-//                user.getUsername(), user.getPassword())) {
-////            notifyService.addErrorMessage("Invalid login!");
-//            return "redirect:/topic/index";
-//        }
+//    public String attemptLogin(@Valid User user, BindingResult bindingResult) {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        user = userService.findUserByEmail(auth.getName());
+//        return "redirect:/topic/index";
+//    }
 //
-//        return null;
+//    @PostMapping("/user/create")
+//    public String save (User user) {     // saves the new user to DB
+//        User exists = userService.findUserByEmail(user.getEmail());
+//        if (exists == null) {
+//            userService.saveUser(user);
+//            return "redirect:/topic/index";
+//        } else {
+//            // user already registered
+//
+//        }
+//        return "redirect:/topic/index";
 //    }
 
 //
@@ -85,10 +133,6 @@ public class UserController {
 //        return "user/register";
 //    }
 
-//    @PostMapping("/user/create")
-//    public String save (User user) {     // saves the new user to DB
-//        this.userService.save(user);
-//        return "redirect:/topic/index";
-//    }
+
 
 }
