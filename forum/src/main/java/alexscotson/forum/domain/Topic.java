@@ -23,14 +23,14 @@ public class Topic {
     @NotEmpty
     private String topicBody;
 
-    //@NotEmpty
-    //private Date date = new Date();
+    private String date;
 
     public Topic() {
 
     }
 
-    public Topic(@NotEmpty String topicTitle, @NotEmpty String topicBody) {
+    public Topic(@NotEmpty String topicTitle, @NotEmpty String
+            topicBody) {
         this.topicTitle = topicTitle;
         this.topicBody = topicBody;
     }
@@ -67,13 +67,13 @@ public class Topic {
         this.topicBody = topicBody;
     }
 
-   // public Date getDate() {
-    //    return date;
-    //}
+    public String getDate() {
+        return date;
+    }
 
-//    public void setDate(Date date) {
-//        this.date = date;
-//    }
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     @Override
     public String toString() {
@@ -82,7 +82,7 @@ public class Topic {
                 ", byUser='" + byUser + '\'' +
                 ", topicTitle='" + topicTitle + '\'' +
                 ", topicBody='" + topicBody + '\'' +
-     //           ", date=" + date +
+                ", date=" + date +
                 '}';
     }
 }

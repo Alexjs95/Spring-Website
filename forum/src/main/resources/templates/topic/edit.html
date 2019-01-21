@@ -3,7 +3,27 @@
 <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cerulean/bootstrap.min.css"/>
 <div th:replace="fragments/navbar :: navbar"/>
 
-<h1> edit a topic </h1>
+<h1> Edit a topic </h1>
+
+<div>
+    <form action="#" th:action = "@{/topic/edit/}" th:object="${topic}" method="POST">
+        <div>
+            <label>Topic Title:</label>
+            <input type="text" th:field="*{topicTitle}">
+        </div>
+        <div>
+            <label>Body: </label>
+            <textarea th:text="${topic.topicBody}" th:field="*{topicBody}">Enter text here</textarea>
+        </div>
+
+        <p hidden th:text="${topic.id}"></p>
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+
+
+</div>
 
 
 

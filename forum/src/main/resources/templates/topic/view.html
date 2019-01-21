@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cerulean/bootstrap.min.css"/>
-<div th:replace="fragments/navbar :: navbar"/>
+    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cerulean/bootstrap.min.css"/>
+    <div th:replace="fragments/navbar :: navbar"/>
 
 
-<h1> view a topic</h1>
+    <h1> view a topic</h1>
 
-<main id="topics">
-
-
+    <main id="topic">
         <h2 class="title">
             <a th:text="${topic.topicTitle}"></a>
         </h2>
 
         <div class="date">
-            <!--<i>Posted on</i>-->
-            <!--  <span th:text="${#dates.format(t.date, 'dd-MMM-yyyy')}">22-May-2016</span>-->
+            <i>Posted on</i>
+            <span th:text="${topic.date}"></span>
             <i>by</i>
             <span th:text="${topic.getByUser()}"></span>
         </div>
-</main>
+    </main>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-</script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
-</script>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
 </html>

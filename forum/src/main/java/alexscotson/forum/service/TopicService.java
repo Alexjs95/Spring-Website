@@ -14,22 +14,19 @@ public class TopicService  {
     public TopicRepository topicRepo;
 
     public List<Topic> findAll() {
-
-
         return this.topicRepo.findAll();
     }
 
     public Topic findById(Integer id) {
-
         return topicRepo.findById(id).orElse(null);
     }
 
-    public void create(Topic topic) {
-        this.create(topic);
+    public void save(Topic topic) {
+        this.topicRepo.save(topic);
     }
 
     public Topic edit(Topic topic) {
-        return this.edit(topic);
+        return this.topicRepo.save(topic);
     }
 
     public void delete(Integer id) {
