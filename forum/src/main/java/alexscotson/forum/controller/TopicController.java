@@ -48,7 +48,7 @@ public class TopicController {
         topic.setDate(df.format(dt));       // sets date to now.
         topic.setByUser("temp");            // sets user to currently logged in user.
         this.topicService.save(topic);
-        return "topic/index";
+        return "redirect:/topic/index";
     }
 
 

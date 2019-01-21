@@ -1,33 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cerulean/bootstrap.min.css"/>
+<div th:replace="fragments/navbar :: navbar"/>
 
-<head th:replace="layout :: site-head">
-    <title>Login</title>
-</head>
+<h1> Register an account </h1>
+<div>
+    <form action="#" th:action = "@{/user/login}" th:object="${user}" method="POST">
+        <div>
+            <label>Username: </label>
+            <input type="text" th:field="*{username}">
+        </div>
 
-<body>
 
-<header th:replace="layout :: site-header"/>
+        <div>
+            <label>Password: </label>
+            <input type="password" th:field="*{password}">
+        </div>
 
-<h1>Login in the Blog</h1>
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
 
-<form method="post" th:object="${user}">
-    <div><label for="username">Username:</label></div>
-    <input id="username" type="text" name="username" th:value="*{username}"/>
-    <span class="formError" th:if="${#fields.hasErrors('username')}"
-          th:errors="*{username}">Invalid username</span>
+</div>
 
-    <div><label for="password" th:value="*{username}">Password:</label></div>
-    <input id="password" type="password" name="password" th:value="*{password}"/>
-    <span class="formError" th:if="${#fields.hasErrors('password')}"
-          th:errors="*{password}">Invalid password</span>
 
-    <div><input type="submit" value="Login"/>
-        <a href="register.html" th:href="@{/users/register}">[Go to Register]</a></div>
-</form>
-
-<footer th:replace="layout :: site-footer"/>
-
-</body>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+</script>
 </html>

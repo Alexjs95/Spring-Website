@@ -18,16 +18,16 @@ public class User {
     private String email;
 
     @NotEmpty
-    private String passwordHash;
+    private String password;
 
     public User() {
 
     }
 
-    public User(@NotEmpty String username, @NotEmpty String email, @NotEmpty String passwordHash) {
+    public User(@NotEmpty String username, @NotEmpty String email, @NotEmpty String password) {
         this.username = username;
         this.email = email;
-        this.passwordHash = passwordHash;
+        this.password = password;
     }
 
     public Integer getId() {
@@ -54,12 +54,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", passwordHash='" + passwordHash + '\'' +
+                ", passwordHash='" + password + '\'' +
                 '}';
     }
 }

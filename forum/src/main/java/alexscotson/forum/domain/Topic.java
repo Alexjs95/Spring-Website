@@ -11,7 +11,7 @@ import java.util.Date;
 public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "topic_id")
     private Integer id;
 
     @NotEmpty
