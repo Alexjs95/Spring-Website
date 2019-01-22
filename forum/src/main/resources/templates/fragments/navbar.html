@@ -21,19 +21,35 @@
                 <li class="nav-item">
                     <a class="nav-link" href="topic/create.html" th:href="@{/topic/create}">Create Topic</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html" th:href="@{/login}">Login</a>
-                </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="registration.html" th:href="@{/registration}">Register</a>
                 </li>
 
+                <li class="nav-item" sec:authorize="!isFullyAuthenticated()">
+                    <a class="nav-link" href="login.html" th:href="@{/login}">Login</a>
+                </li>
+
+
+
+                <li class="nav-item" sec:authorize="isFullyAuthenticated()">
+                    <a class="nav-link" href="/logout" th:href="@{/logout}">Logout</a>
+                </li>
+
+                <li class="nav-item" sec:authorize="isFullyAuthenticated()">
+                    <a class="nav-link" href="/dashboard" th:href="@{/dashboard}">Dashboard</a>
+                </li>
+
+                <div sec:authorize="isFullyAuthenticated()" th:text="'Logged in as: ' + ${#authentication.name}" style="color: white"></div>
+
+
             </ul>
 
 
-            <div th:text="${#authentication.name}">
-                The value of the "name" property of the authentication object should appear here.
-            </div>
+            <!--<div th:text="${#authentication.name}">-->
+                <!--The value of the "name" property of the authentication object should appear here.-->
+            <!--</div>-->
 
 
 
