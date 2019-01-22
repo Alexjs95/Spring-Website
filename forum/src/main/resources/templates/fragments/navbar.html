@@ -1,5 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 
 
@@ -16,25 +16,26 @@
                     <a class="nav-link" href="index.html" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="topic/index.html" th:href="@{/topic/index}">View Topics</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="topic/create.html" th:href="@{/topic/create}">Create Topic</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="user/login.html" th:href="@{/user/login}">Login</a>
+                    <a class="nav-link" href="login.html" th:href="@{/login}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="user/register.html" th:href="@{/user/register}">Register</a>
+                    <a class="nav-link" href="registration.html" th:href="@{/registration}">Register</a>
                 </li>
 
             </ul>
-            <ul class="navbar-nav">
 
-            </ul>
+
+            <div th:text="${#authentication.name}">
+                The value of the "name" property of the authentication object should appear here.
+            </div>
+
+
 
         </div>
     </nav>

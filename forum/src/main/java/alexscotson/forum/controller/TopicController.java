@@ -4,6 +4,8 @@ import alexscotson.forum.domain.Topic;
 import alexscotson.forum.service.TopicService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -44,9 +46,11 @@ public class TopicController {
     public String save ( Topic topic) {     // saves the new topic to DB
         Date dt = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");      // mySQL date format.
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         topic.setDate(df.format(dt));       // sets date to now.
-        topic.setByUser("temp");            // sets user to currently logged in user.
+
+        topic.setByUser(auth.getName());
         this.topicService.save(topic);
         return "redirect:/topic/index";
     }
