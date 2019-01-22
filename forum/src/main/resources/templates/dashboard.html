@@ -24,10 +24,7 @@
                             <td th:text="${t.getTopicTitle()}"></td>
                             <td> <a th:href="'topic/edit/' + ${t.getId()}" class="btn btn-primary">Edit</a></td>
                             <td>
-
                                 <a th:href="@{'/topic/delete/' + ${t.getId()}}" class="btn btn-danger">Delete</a>
-
-
                             </td>
                         </tr>
                     </article>

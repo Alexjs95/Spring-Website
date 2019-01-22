@@ -1,6 +1,8 @@
 package alexscotson.forum.controller;
 
 import alexscotson.forum.domain.Topic;
+import alexscotson.forum.domain.TopicPost;
+import alexscotson.forum.service.TopicPostService;
 import alexscotson.forum.service.TopicService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ public class TopicController {
     @Autowired
     private TopicService topicService;
 
+    @Autowired
+    private TopicPostService topicPostService;
 
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
@@ -31,7 +35,10 @@ public class TopicController {
 
     @GetMapping("/topic/view/{id}")
     public String viewTopic (@PathVariable("id") Integer id, Model model) {     //requests input of an id.
+
+        List<TopicPost> topicPost = topicPostService.findByTopicId(id);
         Topic topic = topicService.findById(id);        // searches for 1 topic by id.
+        model.addAttribute("topicPost", topicPost);
         model.addAttribute("topic", topic);     // returns the topic to the view.
         return  "topic/view";
     }
@@ -49,12 +56,9 @@ public class TopicController {
     public String save ( Topic topic) {     // saves the new topic to DB
         Date dt = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");      // mySQL date format.
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         topic.setDate(df.format(dt));       // sets date to now.
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-
         topic.setusername(auth.getName());
         this.topicService.save(topic);
         return "redirect:/topic/index";

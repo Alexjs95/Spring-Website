@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
     <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cerulean/bootstrap.min.css"/>
     <div th:replace="fragments/navbar :: navbar"/>
 
@@ -11,12 +11,38 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <h2 class="form-signin-heading">Viewing a Topic</h2> <br/>
+                    <div  sec:authorize="isFullyAuthenticated()">
+                        <a th:href="@{'/topic/edit/' + ${topic.getId()}}" class="btn btn-primary">Edit</a>
+                        <a th:href="@{'/topic/delete/' + ${topic.getId()}}" class="btn btn-danger">Delete</a>
+                    </div>
 
                     <h2 class="title">
                         <a th:text="${topic.topicTitle}"></a>
                     </h2>
 
-                    <p th:text="${topic.topicBody}"></p>
+                    <p th:text="${topic.topicBody}"></p><br/>
+
+                    <div  sec:authorize="isFullyAuthenticated()">
+                        <a th:href="@{'/post/create/' + ${topic.getId()}}" class="btn btn-primary">Add Post</a>
+                    </div>
+
+
+
+                    <article th:each="p : ${topicPost}">
+
+                        <div class="card card-body bg-light">
+                            <h4 th:text="${p.message}"/>
+                            <div class="date">
+                                <i>Posted on</i>
+                                <span th:text="${p.date}"></span>
+                                <i>by</i>
+                                <span th:text="${p.username}"></span>
+                            </div>
+                        </div>
+                        <br><br>
+                    </article>
+
+
 
                     <div class="date">
                         <i>Posted on</i>

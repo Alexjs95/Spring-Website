@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cerulean/bootstrap.min.css"/>
+<div th:replace="fragments/navbar :: navbar"/>
+
+<head>
+    <title>Adding post</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+            <form action="#" th:action ="@{'/post/create/' + ${topic.getId()}}" th:object="${topicpost}" method="POST">
+                <h2 class="form-signin-heading">Add Post to Topic</h2> <br/>
+
+                <h2 class="title" th:text="${topic.topicTitle}"></h2>
+
+
+                <label class="form-label">Post Body:</label> <br/>
+                <textarea th:field="*{message}" rows="5" class="form-control"></textarea><br/>
+
+                <button class="btn btn-lg btn-primary btn-block" name="Submit" type="Submit" th:text="Create"></button>
+            </form>
+
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>
