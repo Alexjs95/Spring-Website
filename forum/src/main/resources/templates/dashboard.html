@@ -22,15 +22,12 @@
                     <article th:each="t : ${topics}">
                         <tr>
                             <td th:text="${t.getTopicTitle()}"></td>
-                            <td> <a th:href="'topic/edit/' + ${t.getId()}">Edit</a></td>
+                            <td> <a th:href="'topic/edit/' + ${t.getId()}" class="btn btn-primary">Edit</a></td>
                             <td>
 
                                 <a th:href="@{'/topic/delete/' + ${t.getId()}}" class="btn btn-danger">Delete</a>
 
-                                <!--<form action="#" th:action = "@{'/topic/delete/' + ${t.getId()}}" th:object="${topic}" th:method="delete">-->
-                                    <!--<input type="hidden" name="_method" value="delete">-->
-                                    <!--<input class="btn btn-danger" type="submit" value="Delete" />-->
-                                <!--</form>-->
+
                             </td>
                         </tr>
                     </article>

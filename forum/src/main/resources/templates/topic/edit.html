@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cerulean/bootstrap.min.css"/>
-<div th:replace="fragments/navbar :: navbar"/>
+    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cerulean/bootstrap.min.css"/>
+    <div th:replace="fragments/navbar :: navbar"/>
 
-<h1> Edit a topic </h1>
+    <head>
+        <title>Edit Topic</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
 
-<div>
-    <form action="#" th:action = "@{/topic/edit/}" th:object="${topic}" method="POST">
-        <div>
-            <label>Topic Title:</label>
-            <input type="text" th:field="*{topicTitle}">
+                    <form action="#" th:action = "@{/topic/edit/}" th:object="${topic}" method="POST">
+                        <h2 class="form-signin-heading">Edit Topic</h2> <br/>
+
+                        <h2 class="form-signin-heading" th:text="${topic.getTopicTitle()}"></h2> <br/>
+
+                        <label class="form-label">Topic Body:</label> <br/>
+                        <textarea th:text="${topic.topicBody}" th:field="*{topicBody}" rows="5" class="form-control"></textarea><br/>
+
+                        <p hidden th:text="${topic.id}"></p>
+                        <button class="btn btn-lg btn-primary btn-block" name="Submit" type="Submit">Save Edits</button>
+                    </form>
+
+                </div>
+            </div>
         </div>
-        <div>
-            <label>Body: </label>
-            <textarea th:text="${topic.topicBody}" th:field="*{topicBody}">Enter text here</textarea>
-        </div>
+    </body>
 
-        <p hidden th:text="${topic.id}"></p>
-        <div>
-            <input type="submit" value="Submit" />
-        </div>
-    </form>
-
-
-</div>
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-</script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
-</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </html>

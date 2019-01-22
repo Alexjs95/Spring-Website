@@ -3,27 +3,32 @@
     <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cerulean/bootstrap.min.css"/>
     <div th:replace="fragments/navbar :: navbar"/>
 
+    <head>
+        <title>View Topics</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <h2 class="form-signin-heading">Viewing a Topic</h2> <br/>
 
-    <h1> view a topic</h1>
+                    <h2 class="title">
+                        <a th:text="${topic.topicTitle}"></a>
+                    </h2>
 
-    <main id="topic">
-        <h2 class="title">
-            <a th:text="${topic.topicTitle}"></a>
-        </h2>
+                    <p th:text="${topic.topicBody}"></p>
 
-        <div class="date">
-            <i>Posted on</i>
-            <span th:text="${topic.date}"></span>
-            <i>by</i>
-            <span th:text="${topic.getusername()}"></span>
+                    <div class="date">
+                        <i>Posted on</i>
+                        <span th:text="${topic.date}"></span>
+                        <i>by</i>
+                        <span th:text="${topic.getusername()}"></span>
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
+    </body>
 
-
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </html>

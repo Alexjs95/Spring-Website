@@ -3,29 +3,31 @@
 <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cerulean/bootstrap.min.css"/>
 <div th:replace="fragments/navbar :: navbar"/>
 
-    <h1> Create a topic </h1>
-    <div>
-        <form action="#" th:action = "@{/topic/create}" th:object="${topic}" method="POST">
-            <div>
-                <label>Topic Title:</label>
-                <input type="text" th:field="*{topicTitle}">
+    <head>
+        <title>Create Topic</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+
+                    <form action="#" th:action = "@{/topic/create}" th:object="${topic}" method="POST">
+                        <h2 class="form-signin-heading">Create New Topic</h2> <br/>
+
+                        <label class="form-label">Topic Title</label> <br/>
+                        <input type="text" th:field="*{topicTitle}" class="form-control"> <br/>
+                        <label class="form-label">Topic Body:</label> <br/>
+                        <textarea th:field="*{topicBody}" rows="5" class="form-control"></textarea><br/>
+
+
+                        <button class="btn btn-lg btn-primary btn-block" name="Submit" type="Submit" th:text="Create"></button>
+                    </form>
+
+                </div>
             </div>
-            <div>
-                <label>Body: </label>
-                <textarea th:field="*{topicBody}">Enter text here</textarea>
-            </div>
+        </div>
+    </body>
 
-            <div>
-                    <input type="submit" value="Submit" />
-            </div>
-        </form>
-
-
-    </div>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-</script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
-</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </html>
