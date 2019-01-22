@@ -11,4 +11,7 @@ public interface TopicRepository extends CrudRepository<Topic, Integer> {
     List<Topic> findAll();
 
     void deleteById(Integer id);
+
+    List<Topic> findByUsername(String username);
+
 }

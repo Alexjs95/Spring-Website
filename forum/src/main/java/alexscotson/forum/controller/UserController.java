@@ -1,6 +1,8 @@
 package alexscotson.forum.controller;
 
+import alexscotson.forum.domain.Topic;
 import alexscotson.forum.domain.User;
+import alexscotson.forum.service.TopicService;
 import alexscotson.forum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,12 +19,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TopicService topicService;
 
     @RequestMapping(value="/login", method = RequestMethod.GET)
     public ModelAndView login(){
@@ -65,15 +70,15 @@ public class UserController {
 
 
 
-    @RequestMapping(value="/dashboard", method = RequestMethod.GET)
-    public ModelAndView home(Principal principal){
-        String abc = principal.getName();
-        ModelAndView modelAndView = new ModelAndView();
+    @GetMapping(value="/dashboard")
+    public String home(Principal principal, Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUsername(auth.getName());
-        modelAndView.addObject("Welcome " + user.getUsername() + " (" + user.getEmail() + ")");
-        modelAndView.setViewName("dashboard");
-        return modelAndView;
+
+        List<Topic> topics = topicService.findByUsername(auth.getName());
+        model.addAttribute("topics", topics);       // returns the topics to the view.
+
+        return "/dashboard";
     }
 
 }

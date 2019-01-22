@@ -15,7 +15,7 @@ public class Topic {
     private Integer id;
 
     @NotEmpty
-    private String byUser;
+    private String username;
 
     @NotEmpty
     private String topicTitle;
@@ -43,12 +43,12 @@ public class Topic {
         this.id = id;
     }
 
-    public String getByUser() {
-        return byUser;
+    public String getusername() {
+        return username;
     }
 
-    public void setByUser(String byUser) {
-        this.byUser = byUser;
+    public void setusername(String username) {
+        this.username = username;
     }
 
     public String getTopicTitle() {
@@ -79,7 +79,7 @@ public class Topic {
     public String toString() {
         return "topic{" +
                 "id=" + id +
-                ", byUser='" + byUser + '\'' +
+                ", byUser='" + username + '\'' +
                 ", topicTitle='" + topicTitle + '\'' +
                 ", topicBody='" + topicBody + '\'' +
                 ", date=" + date +

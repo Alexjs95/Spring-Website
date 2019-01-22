@@ -17,6 +17,10 @@ public class TopicService  {
         return this.topicRepo.findAll();
     }
 
+    public List<Topic> findByUsername(String username) {
+        return this.topicRepo.findByUsername(username);
+    }
+
     public Topic findById(Integer id) {
         return topicRepo.findById(id).orElse(null);
     }
@@ -29,11 +33,8 @@ public class TopicService  {
         return this.topicRepo.save(topic);
     }
 
-    public void delete(Integer id) {
-        deleteById(id);
+    public void deleteById(Integer id) {
+        this.topicRepo.deleteById(id);
     }
 
-    public void deleteById(Integer id) {
-        this.delete(id);
-    }
 }

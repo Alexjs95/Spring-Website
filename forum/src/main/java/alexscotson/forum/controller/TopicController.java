@@ -19,6 +19,9 @@ public class TopicController {
     @Autowired
     private TopicService topicService;
 
+
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
     @GetMapping("/topic/index")
     public String viewTopics(Model model) {
         List<Topic> topics = topicService.findAll();        // finds all topics.
@@ -46,11 +49,13 @@ public class TopicController {
     public String save ( Topic topic) {     // saves the new topic to DB
         Date dt = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");      // mySQL date format.
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         topic.setDate(df.format(dt));       // sets date to now.
 
-        topic.setByUser(auth.getName());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        topic.setusername(auth.getName());
         this.topicService.save(topic);
         return "redirect:/topic/index";
     }
@@ -66,23 +71,22 @@ public class TopicController {
 
     @PostMapping("/topic/edit/")
     public String saveEdits(Topic topic) {
-
-
         Date dt = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         topic.setDate(df.format(dt));
 
-        topic.setByUser("temp2");
+        this.topicService.save(topic);
         this.topicService.edit(topic);
 
         return "topic/index";
     }
 
 
-    @DeleteMapping("topic/delete/{id}")
-    public void delete (@PathVariable ("id") Integer id) {
-        this.topicService.delete(id);
+    @RequestMapping(value = "topic/delete/{id}", method = RequestMethod.GET)
+    public String delete (@PathVariable ("id") Integer id) {
+        this.topicService.deleteById(id);
+        return "redirect:/topic/index";
     }
 
 }
