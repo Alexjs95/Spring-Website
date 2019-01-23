@@ -14,26 +14,34 @@
                     <div  sec:authorize="isFullyAuthenticated()">
                         <a th:href="@{'/topic/edit/' + ${topic.getId()}}" class="btn btn-primary">Edit</a>
                         <a th:href="@{'/topic/delete/' + ${topic.getId()}}" class="btn btn-danger">Delete</a>
-                    </div>
+                    </div><br/>
 
-                    <h2 class="title">
-                        <a th:text="${topic.topicTitle}"></a>
-                    </h2>
+                    <div class="card card-body bg-light">
+                        <h2 class="title">
+                            <a th:text="${topic.topicTitle}"></a>
+                        </h2>
 
-                    <p th:text="${topic.topicBody}"></p><br/>
+                        <p th:text="${topic.topicBody}"></p><br/>
+
+                        <div class="date">
+                            <i>Topic posted on</i>
+                            <span th:text="${topic.date}"></span>
+                            <i>by</i>
+                            <span th:text="${topic.getusername()}"></span>
+                        </div>
+                    </div><br/>
+
 
                     <div  sec:authorize="isFullyAuthenticated()">
                         <a th:href="@{'/post/create/' + ${topic.getId()}}" class="btn btn-primary">Add Post</a>
-                    </div>
-
-
+                    </div><br/>
 
                     <article th:each="p : ${topicPost}">
 
                         <div class="card card-body bg-light">
                             <h4 th:text="${p.message}"/>
                             <div class="date">
-                                <i>Posted on</i>
+                                <i>Post added at</i>
                                 <span th:text="${p.date}"></span>
                                 <i>by</i>
                                 <span th:text="${p.username}"></span>
@@ -41,15 +49,6 @@
                         </div>
                         <br><br>
                     </article>
-
-
-
-                    <div class="date">
-                        <i>Posted on</i>
-                        <span th:text="${topic.date}"></span>
-                        <i>by</i>
-                        <span th:text="${topic.getusername()}"></span>
-                    </div>
                 </div>
             </div>
         </div>

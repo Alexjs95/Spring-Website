@@ -11,15 +11,17 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
 
-                    <form action="#" th:action = "@{/topic/edit/}" th:object="${topic}" method="POST">
+
+                    <form action="#" th:action = "@{'/topic/edit/' + ${topic.getId()}}" th:object="${topic}" method="POST">
                         <h2 class="form-signin-heading">Edit Topic</h2> <br/>
 
-                        <h2 class="form-signin-heading" th:text="${topic.getTopicTitle()}"></h2> <br/>
+                        <h2 class="form-signin-heading" th:text="${topic.topicTitle}"></h2> <br/>
 
                         <label class="form-label">Topic Body:</label> <br/>
                         <textarea th:text="${topic.topicBody}" th:field="*{topicBody}" rows="5" class="form-control"></textarea><br/>
 
                         <p hidden th:text="${topic.id}"></p>
+
                         <button class="btn btn-lg btn-primary btn-block" name="Submit" type="Submit">Save Edits</button>
                     </form>
 

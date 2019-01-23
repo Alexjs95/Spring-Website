@@ -44,14 +44,4 @@ public class UserService {
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
     }
-
-    public boolean validateUser(String email, String password) {
-        User user = userRepository.findByEmail(email);
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        if(email.equalsIgnoreCase(user.getEmail()) && encoder.matches(password, user.getPassword())) {
-            return true;
-        }else {
-            return false;
-        }
-    }
 }

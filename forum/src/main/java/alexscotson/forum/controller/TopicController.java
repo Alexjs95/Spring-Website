@@ -73,17 +73,23 @@ public class TopicController {
     }
 
 
-    @PostMapping("/topic/edit/")
-    public String saveEdits(Topic topic) {
+    @PostMapping("/topic/edit/{id}")
+    public String saveEdits(@PathVariable("id") Integer id, Topic topic) {
         Date dt = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Topic existingTopic = topicService.findById(id);
 
+
+        topic.setId(existingTopic.getId());
+        topic.setTopicTitle(existingTopic.getTopicTitle());
         topic.setDate(df.format(dt));
+        topic.setusername(auth.getName());
 
-        this.topicService.save(topic);
+        //this.topicService.save(topic);
         this.topicService.edit(topic);
 
-        return "topic/index";
+        return "redirect:/topic/index";
     }
 
 
