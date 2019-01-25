@@ -1,10 +1,8 @@
 package alexscotson.forum.controller;
 
 import alexscotson.forum.domain.Topic;
-import alexscotson.forum.domain.TopicPost;
 import alexscotson.forum.service.TopicPostService;
 import alexscotson.forum.service.TopicService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,21 +25,26 @@ public class TopicController {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
     @GetMapping("/topic/index")
-    public String viewTopics(Model model) {
-        List<Topic> topics = topicService.findAll();        // finds all topics.
+    public String viewTopics(@RequestParam(value = "search", required = false) String search, Model model) {
+        List<Topic> topics;
+        if (search != null) {
+            topics = topicService.findByUsername(search);
+        } else {
+            topics = topicService.findAll();        // finds all topics.
+        }
+
+        model.addAttribute("topic", new Topic());
         model.addAttribute("topics", topics);       // returns the topics to the view.
         return "topic/index";
     }
 
-    @GetMapping("/topic/view/{id}")
-    public String viewTopic (@PathVariable("id") Integer id, Model model) {     //requests input of an id.
-
-        List<TopicPost> topicPost = topicPostService.findByTopicId(id);
-        Topic topic = topicService.findById(id);        // searches for 1 topic by id.
-        model.addAttribute("topicPost", topicPost);
-        model.addAttribute("topic", topic);     // returns the topic to the view.
-        return  "topic/view";
-    }
+//    @PostMapping("/topic/view/search")
+//    public String viewTopicByUser (@PathVariable("search") String search, Model model) {     //requests input of an id.
+//        List<Topic> topics = topicService.findByUsername(search);
+//        model.addAttribute("topic", new Topic());
+//        model.addAttribute("topics", topics);     // returns the topic to the view.
+//        return  "topic/view";
+//    }
 
 
     @GetMapping("/topic/create")
@@ -53,7 +56,7 @@ public class TopicController {
 
 
     @PostMapping("/topic/create")
-    public String save ( Topic topic) {     // saves the new topic to DB
+    public String save (Topic topic) {     // saves the new topic to DB
         Date dt = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");      // mySQL date format.
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -96,6 +99,7 @@ public class TopicController {
     @RequestMapping(value = "topic/delete/{id}", method = RequestMethod.GET)
     public String delete (@PathVariable ("id") Integer id) {
         this.topicService.deleteById(id);
+
         return "redirect:/topic/index";
     }
 

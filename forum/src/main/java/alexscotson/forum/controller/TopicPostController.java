@@ -41,10 +41,10 @@ public class TopicPostController {
 
         Topic topic = topicService.findById(topic_id);
 
-        topic.setDate(df.format(dt));
+        topicPost.setDate(df.format(dt));
         topicPost.setTopic(topic);
         topicPost.setUsername(auth.getName());
         this.topicPostService.save(topicPost);
-        return "redirect:/topics/index";
+        return "redirect:/topic/index";
     }
 }

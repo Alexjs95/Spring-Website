@@ -12,8 +12,10 @@
                 <div class="col-md-6 col-md-offset-3">
                     <h2 class="form-signin-heading">Viewing a Topic</h2> <br/>
                     <div  sec:authorize="isFullyAuthenticated()">
-                        <a th:href="@{'/topic/edit/' + ${topic.getId()}}" class="btn btn-primary">Edit</a>
-                        <a th:href="@{'/topic/delete/' + ${topic.getId()}}" class="btn btn-danger">Delete</a>
+                        <div th:if="${#authentication.name} == ${topic.getusername()}">
+                            <a th:href="@{'/topic/edit/' + ${topic.getId()}}" class="btn btn-primary">Edit</a>
+                            <a th:href="@{'/topic/delete/' + ${topic.getId()}}" class="btn btn-danger">Delete</a>
+                        </div>
                     </div><br/>
 
                     <div class="card card-body bg-light">

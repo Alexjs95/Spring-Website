@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface TopicPostRepository extends CrudRepository<TopicPost, Integer> {
     List<TopicPost> findByTopicId(Integer id);
+    void deleteAllByTopicId(Integer id);
 }
