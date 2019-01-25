@@ -39,9 +39,8 @@
                     </div><br/>
 
                     <article th:each="p : ${topicPost}">
-
                         <div class="card card-body bg-light">
-                            <h4 th:text="${p.message}"/>
+                            <p th:text="${p.message}"/>
                             <div class="date">
                                 <i>Post added at</i>
                                 <span th:text="${p.date}"></span>
@@ -49,7 +48,7 @@
                                 <span th:text="${p.username}"></span>
                             </div>
                         </div>
-                        <br><br>
+                        <br>
                     </article>
                 </div>
             </div>

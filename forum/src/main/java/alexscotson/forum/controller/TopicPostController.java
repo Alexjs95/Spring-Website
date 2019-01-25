@@ -45,6 +45,6 @@ public class TopicPostController {
         topicPost.setTopic(topic);
         topicPost.setUsername(auth.getName());
         this.topicPostService.save(topicPost);
-        return "redirect:/topic/index";
+        return "redirect:/topic/view/" + topic_id;
     }
 }

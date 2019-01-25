@@ -1,6 +1,7 @@
 package alexscotson.forum.controller;
 
 import alexscotson.forum.domain.Topic;
+import alexscotson.forum.domain.TopicPost;
 import alexscotson.forum.service.TopicPostService;
 import alexscotson.forum.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,13 +39,14 @@ public class TopicController {
         return "topic/index";
     }
 
-//    @PostMapping("/topic/view/search")
-//    public String viewTopicByUser (@PathVariable("search") String search, Model model) {     //requests input of an id.
-//        List<Topic> topics = topicService.findByUsername(search);
-//        model.addAttribute("topic", new Topic());
-//        model.addAttribute("topics", topics);     // returns the topic to the view.
-//        return  "topic/view";
-//    }
+    @GetMapping("/topic/view/{id}")
+    public String viewTopicByUser (@PathVariable("id") Integer id, Model model) {     //requests input of an id.
+        Topic topic = topicService.findById(id);
+        List<TopicPost> topicPosts = topicPostService.findByTopicId(id);
+        model.addAttribute("topic", topic);
+        model.addAttribute("topicPost", topicPosts);     // returns the topic to the view.
+        return  "topic/view";
+    }
 
 
     @GetMapping("/topic/create")

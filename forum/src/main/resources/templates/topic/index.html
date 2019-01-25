@@ -15,15 +15,12 @@
                 <h2 class="form-signin-heading">View Topics</h2> <br/>
 
                 <form action="#" th:action = "@{'/topic/index/'}" method="GET">
-                    <input type="text" placeholder="Search by Author" name="search" g class="form-control">
+                    <input type="text" placeholder="Search by Author" name="search" class="form-control">
                     <button class="btn  btn-primary " name="Submit" type="Submit" >Search</button>
                     <a href="/topic/index">Reset Search</a>
                 </form>
 
-
                <br/><br/>
-
-
 
                 <article th:each="t : ${topics}">
                         <h2 class="title">

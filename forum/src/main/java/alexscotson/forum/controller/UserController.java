@@ -50,6 +50,7 @@ public class UserController {
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         User userExists = userService.findUserByUsername(user.getUsername());
+
         if (userExists != null) {
             bindingResult
                     .rejectValue("username", "error.username",
@@ -66,9 +67,6 @@ public class UserController {
         }
         return modelAndView;
     }
-
-
-
 
     @GetMapping(value="/dashboard")
     public String home(Principal principal, Model model){

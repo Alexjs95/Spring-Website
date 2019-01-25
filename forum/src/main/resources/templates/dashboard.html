@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="container">
-            <h1>Your Topics</h1>
+            <h1>Your Topics</h1><br/>
 
 
             <main id="topics">
@@ -21,7 +21,7 @@
                     </tr>
                     <article th:each="t : ${topics}">
                         <tr>
-                            <td th:text="${t.getTopicTitle()}"></td>
+                            <td href="'/topic/view/' + ${t.getId()}" th:text="${t.getTopicTitle()}"></td>
                             <td> <a th:href="'topic/edit/' + ${t.getId()}" class="btn btn-primary">Edit</a></td>
                             <td>
                                 <a th:href="@{'/topic/delete/' + ${t.getId()}}" class="btn btn-danger">Delete</a>
