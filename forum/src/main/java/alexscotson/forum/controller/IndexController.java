@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class IndexController {
     @GetMapping("/")
     public String index() {
-        return "index";
+        return "index";     //return view index
     }
 
     @GetMapping("/logout")
@@ -26,14 +26,4 @@ public class IndexController {
         securityContextLogoutHandler.logout(request, response, null);
         return "redirect:/";
     }
-
-//    @GetMapping("/login")
-//    public String login(Model model) {
-//        return "login";
-//    }
-//
-//    @GetMapping("/user")
-//    public String userIndex() {
-//        return "user/index";
-//    }
 }
